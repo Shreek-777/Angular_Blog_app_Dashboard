@@ -1,0 +1,8 @@
+.text-theme{
+   color: var(--primary-color);
+}
+
+.card{
+    height: 200px;
+    cursor: pointer;
+}

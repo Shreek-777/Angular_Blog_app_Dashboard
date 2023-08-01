@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 bg-secondary-theme p-5 shadow-effect">
+      <h3 class="text-center text-theme-primary">{{formStatus}} Categories</h3>
+      <p class="text-center">You Can add new categories from here ..!</p>
+
+      <div class="container justify-content-center">
+        <form class="form-inline" [formGroup]="newForm" (submit)="onSubmit()">
+          <div class="row">
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control shadow-effect"
+                placeholder="Add new category"
+                formControlName="categories"
+              />
+              <span
+                class="alert text-danger mt-2"
+                *ngIf="cat.touched && !cat.valid"
+              >
+                Category field is required*
+              </span>
+            </div>
+
+            <div class="col-md-2">
+              <button
+                type="submit"
+                [disabled]="!newForm.valid"
+                class="btn w-100 btn-danger mb-2 bg-theme"
+              >
+                {{formStatus}} Category
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5 mb-5">
+
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="card p-3 shadow-effect">
+          <table class="table table-responsive  text-center hover">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Category</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let category of categoryArray ; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{category.data.category}}</td>
+                    <td>
+                     <button class="me-1  btn btn-sm btn-warning" (click)="onUpdate(category)">Update</button>
+                     <button class="me-2  btn btn-sm btn-danger" (click)="onDelete(category.id)">Delete</button> 
+                    </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+
+  <button class="bg-theme m-lg-2 " type="button" routerLink="/dashboard">Back To Dashboard</button>
+
+</div>
